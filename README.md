@@ -1,7 +1,7 @@
-## Django Recipe App
+# Django Recipe App
 This is Recipe app built with Django and Python. Users should be able to create and modify recipes with ingredients, cooking times, and have difficulty automatically calculated.  
 
-# Key Features:
+## Key Features:
   * Authentication/Login/Logout.
   * Receive user input.
   * Add recipes to an SQLite database.
