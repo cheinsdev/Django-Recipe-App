@@ -62,11 +62,14 @@
 
 <h2>Details: {{object.name}}</h2>
 
-<b>Ingredients: </b> {{object.ingredients}}  <br>
-
+<b>Ingredients: </b> 
+    {% for ingredient in object.ingredients.all %}
+        {{ingredient.name}}, 
+    {% empty %}
+        <li>No ingredients listed</li>
+    {% endfor %}
+<br>
 <b>Cooking Time: </b> {{object.cooking_time}} <br>
-
-<b>Genre: </b> {{object.genre}} <br>
 
 <b>Difficulty: </b> {{object.difficulty}} <br>
 
