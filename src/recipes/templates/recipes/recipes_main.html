@@ -1,0 +1,90 @@
+<h1>Recipes List</h1>   
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #dff7e2; /* pastel green */
+        color: #333;
+        text-align: center;
+    }
+
+    h1 {
+        color: #2f7a4e;
+        margin: 30px 0;
+    }
+
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 90%;
+        max-width: 800px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f0fff2;
+        color: #2f7a4e;
+        font-size: 1.1rem;
+    }
+
+    td {
+        font-size: 1rem;
+    }
+
+    tr:hover {
+        background-color: #f9fff5;
+    }
+
+    a {
+        color: #2f7a4e;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img {
+        border-radius: 8px;
+        max-width: 200px;
+        height: auto;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    @media (max-width: 600px) {
+        table, th, td {
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 120px;
+        }
+    }
+</style>
+
+<table border="1" cellpadding="5" cellspacing = "5">
+   <tr>
+       <td>Recipe Titles</td>
+       <td>Recipe Images</td>
+   </tr>
+   {% for object in object_list %}
+   <tr>
+       <td><a href = "{{object.get_absolute_url}}">
+        {{object.name}}
+       </a></td>
+       <td><img src="{{object.pic.url}}" width="200" height="200"></td>
+   </tr>
+   {% endfor %}
+</table>

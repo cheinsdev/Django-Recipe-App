@@ -1,0 +1,73 @@
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #dff7e2; /* pastel green */
+        color: #333;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+
+    h2 {
+        color: #2f7a4e;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    b {
+        color: #2f7a4e;
+    }
+
+    p, b {
+        font-size: 1.05rem;
+        margin: 10px 0;
+    }
+
+    .recipe-image {
+        display: block;
+        margin: 20px auto;
+        border-radius: 12px;
+        max-width: 300px;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .details-item {
+        background-color: #f0fff2;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .recipe-image {
+            max-width: 200px;
+        }
+    }
+</style>
+
+<h2>Details: {{object.name}}</h2>
+
+<b>Ingredients: </b> {{object.ingredients}}  <br>
+
+<b>Cooking Time: </b> {{object.cooking_time}} <br>
+
+<b>Genre: </b> {{object.genre}} <br>
+
+<b>Difficulty: </b> {{object.difficulty}} <br>
+
+<img src="{{object.pic.url}}" width="300" height="300" />
