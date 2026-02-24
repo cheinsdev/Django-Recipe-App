@@ -1,0 +1,53 @@
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #dff7e2; /* pastel green */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 800px;
+        padding: 40px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #2f7a4e;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2f7a4e;   /* matches your h1 color */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+    background-color: #25663f;
+    transform: translateY(-2px);
+    }
+</style>
+
+<div>
+  <h1>Search for Recipes</h1>
+  <a href ="{%url 'logout' %}" class="btn"> Logout </a>
+</div>

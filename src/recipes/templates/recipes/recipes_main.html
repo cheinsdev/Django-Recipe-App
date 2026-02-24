@@ -72,8 +72,25 @@
             max-width: 120px;
         }
     }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #2f7a4e;   /* matches your h1 color */
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+        background-color: #25663f;
+        transform: translateY(-2px);
+    }
 </style>
 
+<a href ="{%url 'logout' %}" class="btn"> Logout </a>
 <table border="1" cellpadding="5" cellspacing = "5">
    <tr>
        <td>Recipe Titles</td>

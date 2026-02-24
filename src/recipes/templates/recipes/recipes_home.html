@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,11 +36,28 @@
             color: #555;
             margin-bottom: 30px;
         }
+
+        .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #2f7a4e;   /* matches your h1 color */
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+        background-color: #25663f;
+        transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to the Recipes App 🍳</h1>
+        <h1>Welcome to the Recipes App</h1>
+        <a href = "{%url 'login' %}" class="btn">Login</a> 
     </div>
 </body>
 </html>
