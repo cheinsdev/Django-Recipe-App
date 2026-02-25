@@ -48,6 +48,21 @@
 </style>
 
 <div>
+  <a href ="{%url 'recipes:list' %}" class="btn">Home</a>
+  <a href ="{%url 'logout' %}" class="btn">Logout</a>
   <h1>Search for Recipes</h1>
-  <a href ="{%url 'logout' %}" class="btn"> Logout </a>
+  <hr>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button class="btn" type="submit">Search</button>
+  </form>
+  <hr>
+  {% if recipes_df %}
+    {{recipes_df|safe}}
+    <br>
+    <img src="data:image/png;base64, {{chart|safe}}">
+  {% else %}
+    <h3>No Data</h3>
+  {% endif %}
 </div>

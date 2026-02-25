@@ -90,7 +90,10 @@
     }
 </style>
 
-<a href ="{%url 'logout' %}" class="btn"> Logout </a>
+<a href ="{% url 'recipes:search' %}" class="btn">Search</a>
+<a href ="{% url 'logout' %}" class="btn">Logout </a>
+
+<hr>
 <table border="1" cellpadding="5" cellspacing = "5">
    <tr>
        <td>Recipe Titles</td>
