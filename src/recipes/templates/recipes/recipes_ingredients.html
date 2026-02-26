@@ -1,5 +1,3 @@
-<h1>Recipes List</h1>   
-
 <style>
     body {
         margin: 0;
@@ -88,32 +86,65 @@
         background-color: #25663f;
         transform: translateY(-2px);
     }
+    .form-card {
+    background: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #2f7a4e;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    .checkbox-group {
+        max-height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: #f9fff5;
+    }
+
+    .checkbox-group label {
+        font-weight: normal;
+        display: block;
+        margin-bottom: 5px;
+    }
 </style>
 
-<a href ="{% url 'recipes:create' %}" class="btn">Create</a>
-<a href ="{%url 'recipes:ingredients' %}" class="btn">Ingredients</a>
-<a href ="{% url 'recipes:search' %}" class="btn">Search</a>
-<a href ="{% url 'logout' %}" class="btn">Logout </a>
-
-
+<h1>Add Ingredients</h1>
+<a href ="{%url 'recipes:list' %}" class="btn">Home</a>
+<a href ="{%url 'recipes:create' %}" class="btn">Create</a>
+<a href ="{%url 'recipes:search' %}" class="btn">Search</a>
+<a href ="{%url 'logout' %}" class="btn">Logout</a>
 <hr>
-<table border="1" cellpadding="5" cellspacing = "5">
-   <tr>
-       <td>Recipe Titles</td>
-       <td>Recipe Images</td>
-   </tr>
-   {% for object in object_list %}
-   <tr>
-       <td>
-            <a href = "{{object.get_absolute_url}}">{{object.name}}</a>
-            <br>
-            {% if object.pk %}
-            <a href = "{% url 'recipes:delete' object.pk %}" style="color: red; font-size: smaller;">
-                x
-            </a>
-            {% endif %}
-        </td>
-       <td><img src="{{object.pic.url}}" width="200" height="200"></td>
-   </tr>
-   {% endfor %}
-</table>
+<div class="form-card">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Ingredient Name</label>
+      {{ form.name }}
+    </div>
+    <button type="submit" class="btn">Save Ingredient</button>
+  </form>
+</div>

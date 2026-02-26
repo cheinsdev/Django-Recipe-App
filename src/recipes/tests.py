@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .models import Recipe
+from .models import Recipe, Ingredient
 from ingredients.models import Ingredient
 from .forms import RecipeSearchForm
 
@@ -118,3 +118,63 @@ class RecipeSearchViewTest(TestCase):
     self.assertEqual(response.status_code, 200)
     self.assertContains(response, 'Test Recipe 0')
     self.assertContains(response, 'Test Recipe 14')
+
+# TESTS FOR RECIPE DELETION 
+class RecipeTests(TestCase):
+  def setUp(self):
+    self.user = User.objects.create_user(username='testuser', password='password')
+    self.client.login(username='testuser', password='password')
+
+    ing1 = Ingredient.objects.create(name='Ingredient1')
+    ing2 = Ingredient.objects.create(name='Ingredient2')
+
+    self.recipe = Recipe.objects.create(
+      name='Test Recipe',
+      cooking_time = 10,
+      difficulty = 'easy'
+    )
+    self.recipe.ingredients.set([ing1, ing2])
+
+  def test_recipe_list_view(self):
+    url = reverse('recipes:list')
+    response = self.client.get(url)
+    self.assertEqual(response.status_code, 200)
+    self.assertContains(response, 'Test Recipe')
+
+  def test_recipe_delete_view_get(self):
+    url = reverse('recipes:delete', args=[self.recipe.pk])
+    response = self.client.get(url)
+    self.assertEqual(response.status_code, 200)
+    self.assertContains(response, 'Are you sure you want to delete')
+
+  def test_recipe_delete_view_post(self):
+    url = reverse('recipes:delete', args=[self.recipe.pk])
+    response = self.client.post(url)
+    self.assertRedirects(response, reverse('recipes:list'))
+    self.assertFalse(Recipe.objects.filter(pk=self.recipe.pk).exists())
+
+# TEST INGREDIENT VIEW
+class IngredientTests(TestCase):
+    def setUp(self):
+      self.user = User.objects.create_user(username='testuser', password='password')
+      self.client.login(username='testuser', password='password')
+
+    def test_ingredients_view_get(self):
+      url = reverse('recipes:ingredients')
+      response = self.client.get(url)
+      self.assertEqual(response.status_code, 200)
+      self.assertContains(response, '<form')
+
+    def test_create_ingredient_post(self):
+      url = reverse('recipes:ingredients')
+      data = {'name': 'Salt'}
+      response = self.client.post(url, data)
+      self.assertRedirects(response, reverse('recipes:create'))
+      self.assertTrue(Ingredient.objects.filter(name='Salt').exists())
+
+    def test_create_ingredient_invalid_post(self):
+      url = reverse('recipes:ingredients')
+      data = {'name': ''}
+      response = self.client.post(url, data)
+      self.assertEqual(response.status_code, 200)
+      self.assertFalse(Ingredient.objects.filter(name='').exists())

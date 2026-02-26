@@ -1,5 +1,3 @@
-<h1>Recipes List</h1>   
-
 <style>
     body {
         margin: 0;
@@ -90,30 +88,14 @@
     }
 </style>
 
-<a href ="{% url 'recipes:create' %}" class="btn">Create</a>
-<a href ="{%url 'recipes:ingredients' %}" class="btn">Ingredients</a>
-<a href ="{% url 'recipes:search' %}" class="btn">Search</a>
-<a href ="{% url 'logout' %}" class="btn">Logout </a>
+{% block content %}
+  <h2>Delete Recipe</h2>
+  <hr>
+  <p>Are you sure you want to delete "<strong>{{ object.name }}</strong>"?</p>
 
-
-<hr>
-<table border="1" cellpadding="5" cellspacing = "5">
-   <tr>
-       <td>Recipe Titles</td>
-       <td>Recipe Images</td>
-   </tr>
-   {% for object in object_list %}
-   <tr>
-       <td>
-            <a href = "{{object.get_absolute_url}}">{{object.name}}</a>
-            <br>
-            {% if object.pk %}
-            <a href = "{% url 'recipes:delete' object.pk %}" style="color: red; font-size: smaller;">
-                x
-            </a>
-            {% endif %}
-        </td>
-       <td><img src="{{object.pic.url}}" width="200" height="200"></td>
-   </tr>
-   {% endfor %}
-</table>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn">Yes</button>
+    <a href="{% url 'recipes:list' %}" class="btn">Cancel</a>
+  </form>
+{% endblock %}
