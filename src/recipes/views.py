@@ -54,12 +54,18 @@ def create(request):
 
 @login_required
 def ingredients(request):
-  form = IngredientForm(request.POST or None)
+  if request.method == 'POST':
+      form = IngredientForm(request.POST)
+      if form.is_valid():
+          ingredient = form.save()
+          
+          if 'add_another' in request.POST:
+              return redirect('recipes:ingredients')
+          else:
+              return redirect('recipes:create')
+  else:
+      form = IngredientForm()
 
-  if form.is_valid():
-    form.save()
-    return redirect('recipes:create')
-  
   return render(request, 'recipes/recipes_ingredients.html', {'form': form})
 
 @login_required
