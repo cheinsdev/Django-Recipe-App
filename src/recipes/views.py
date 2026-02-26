@@ -41,13 +41,15 @@ def search(request):
 
 @login_required
 def create(request):
-  form = RecipeForm(request.POST or None, request.FILES or None)
   ingredients = Ingredient.objects.all()
-
-  if form.is_valid():
-    form.save()
-    return redirect('recipes:list')
-  
+  if request.method == "POST":
+    form = RecipeForm(request.POST, request.FILES)
+    if form.is_valid():
+      form.save()
+      return redirect('recipes:list')
+  else:
+    form = RecipeForm()
+    
   return render(request, 'recipes/recipes_create.html', {'form': form, 'ingredients': ingredients})
 
 @login_required

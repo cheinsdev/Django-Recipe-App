@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-ml49cp(e)=yakpevh4xz)3w)6xuq6kv7g&3^xf^)gr-n3&p#%9')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", 'rocky-shelf-99047-836f8ab85c67.herokuapp.com']
 
@@ -121,13 +121,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# STATIC_URL = '/static/'
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[
-   BASE_DIR / 'static'
-]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'src' / 'media'
+
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
