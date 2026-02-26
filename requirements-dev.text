@@ -1,0 +1,39 @@
+# Production dependencies
+-r requirements.txt
+
+# Dev tools & Jupyter / IPython environment
+ipython==8.12.3
+matplotlib==3.7.5
+numpy==1.24.4
+pandas==2.0.3
+pillow==10.4.0
+
+# Code analysis / debugging
+jedi==0.19.2
+parso==0.8.5
+backcall==0.2.0
+stack-data==0.6.3
+traitlets==5.14.3
+decorator==5.2.1
+pickleshare==0.7.5
+greenlet==3.1.1
+
+# Optional / other dependencies
+fonttools==4.57.0
+contourpy==1.1.1
+cycler==0.12.1
+kiwisolver==1.4.7
+python-dateutil==2.9.0.post0
+pytz==2025.2
+tzdata==2025.3
+colorama==0.4.6
+platformdirs==4.3.6
+packaging==26.0
+typing_extensions==4.13.2
+virtualenv==20.35.4
+virtualenvwrapper-win==1.2.7
+filelock==3.16.1
+importlib_resources==6.4.5
+protobuf==5.29.5
+pyparsing==3.1.4
+six==1.17.0
